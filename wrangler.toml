@@ -1,0 +1,37 @@
+name = "ai-memory-mcp-server"
+main = "src/index.ts"
+compatibility_date = "2025-06-10"
+node_compat = true
+
+[durable_objects]
+bindings = [
+  { name = "MEMORY_STORAGE", class_name = "MyMCP" }
+]
+
+[[migrations]]
+tag = "v1"
+new_sqlite_classes = ["MyMCP"]
+
+[vectorize]
+bindings = [
+  { binding = "VECTORIZE", index_name = "memory-vector-index" }
+]
+
+[ai]
+binding = "AI"
+
+[vars]
+MEMORY_MCP_VERSION = "1.0.0"
+
+# Example environment variables (set these via wrangler secret put)
+# AUTH0_CLIENT_ID = ""
+# AUTH0_CLIENT_SECRET = "" 
+# AUTH0_DOMAIN = ""
+
+# Alternative: Stytch
+# STYTCH_PROJECT_ID = ""
+# STYTCH_SECRET = ""
+
+# Alternative: WorkOS  
+# WORKOS_CLIENT_ID = ""
+# WORKOS_API_KEY = ""
